@@ -13,10 +13,9 @@ public class Main {
         System.out.println("Public methods must be called by creating objects");
     }
 
+
     public static void main(String[] args) {
         myMethod();
 
-        Main myObj = new Main();
-        myObj.myPublicMethod();
     }
 }
