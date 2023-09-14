@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-class HelloWorld{
+class HelloWorld {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
 
@@ -14,7 +14,7 @@ class HelloWorld{
         System.out.print("What operation do you want to perform:");
         String operation = scanner.nextLine();
 
-        switch(operation) {
+        switch (operation) {
             case "sum":
                 System.out.printf("%f + %f = %f", numberOne, numberTwo, numberOne + numberTwo);
                 break;
@@ -25,7 +25,7 @@ class HelloWorld{
                 System.out.printf("%f * %f = %f", numberOne, numberTwo, numberOne * numberTwo);
                 break;
             case "div":
-                if(numberTwo == 0){
+                if (numberTwo == 0) {
                     System.out.println("cannot divide by zero");
                     break;
                 }
