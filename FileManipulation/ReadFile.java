@@ -1,3 +1,5 @@
+package FileManipulation;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
@@ -5,7 +7,7 @@ import java.util.Scanner;
 public class ReadFile {
     public static void main(String[] args) {
         try {
-            File myObj = new File("filename.txt");
+            File myObj = new File("FileManipulation/filename.txt");
             Scanner myReader = new Scanner(myObj);
 
             while (myReader.hasNextLine()) {

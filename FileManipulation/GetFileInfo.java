@@ -1,8 +1,11 @@
+package FileManipulation;
+
 import java.io.File;  // Import the File class
 
 public class GetFileInfo { 
   public static void main(String[] args) {
-    File myObj = new File("filename.txt");
+    File myObj = new File("FileManipulation/filename.txt");
+
     if (myObj.exists()) {
       System.out.println("File name: " + myObj.getName());
       System.out.println("Absolute path: " + myObj.getAbsolutePath());

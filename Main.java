@@ -1,4 +1,4 @@
-
+import FileManipulation.CreateFile;
 
 public class Main {
     static void myMethod() {
@@ -18,6 +18,5 @@ public class Main {
 
 
     public static void main(String[] args) {
-        CreateFile.init();
     }
 }
