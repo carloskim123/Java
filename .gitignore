@@ -1,4 +1,4 @@
 *.class
 out/production/IdeaProjects/
-/.idea
+.idea/
 
