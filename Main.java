@@ -1,3 +1,5 @@
+
+
 public class Main {
     static void myMethod() {
         System.out.print("Welcome to Java");
@@ -8,6 +10,7 @@ public class Main {
         System.out.println("Static methods can be called without creating objects");
     }
 
+
     // Public method
     public void myPublicMethod() {
         System.out.println("Public methods must be called by creating objects");
@@ -15,7 +18,6 @@ public class Main {
 
 
     public static void main(String[] args) {
-        myMethod();
-
+        CreateFile.init();
     }
 }

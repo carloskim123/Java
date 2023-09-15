@@ -3,6 +3,10 @@ import java.io.File;
 import java.io.IOException;
 
 public class CreateFile {
+
+    static void init() {
+        System.out.print("Initialized successfully!");
+    }
     public static void main(String[] args) {
         try {
             File myObj = new File("filename.txt");
