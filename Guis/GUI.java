@@ -13,7 +13,6 @@ import javax.swing.BorderFactory;
 
 
 
-
 public class GUI implements ActionListener {
 
     private int count = 0;
