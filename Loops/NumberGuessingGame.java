@@ -45,6 +45,8 @@ public class NumberGuessingGame {
                     break; // Exit the loop when the guess is correct
                 }
             } else {
+
+
                 System.out.println("Please enter a valid number.");
                 scanner.nextLine(); // Clear the input buffer
             }
