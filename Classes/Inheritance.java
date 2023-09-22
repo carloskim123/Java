@@ -22,3 +22,14 @@ class Car extends Vehicle {
 
     }
 }
+
+class Mustang extends Car {
+    public static void main(String[] args) {
+
+        Mustang myMustung = new Mustang();
+
+        myMustung.honk();
+
+    }
+}
+
