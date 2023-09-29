@@ -21,7 +21,7 @@ final class Contact {
 
 public class ContactListApp {
 
-    private static final ArrayList < Contact > contacts = new ArrayList < > ();
+    private static final ArrayList<Contact> contacts = new ArrayList<>();
 
     private static final String CONTACTS_FILE = "contacts.txt";
 
@@ -57,7 +57,7 @@ public class ContactListApp {
 
         if (!(contacts.isEmpty())) {
 
-            for (Contact contact: contacts) {
+            for (Contact contact : contacts) {
 
                 System.out.printf("----Name: %s\n", contact.name);
                 System.out.printf("----phoneNumber: %s\n", contact.phoneNumber);
@@ -118,7 +118,7 @@ public class ContactListApp {
     private static void saveContacts() {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(CONTACTS_FILE))) {
 
-            for (Contact contact: contacts) {
+            for (Contact contact : contacts) {
                 writer.write(contact.name + "," + contact.phoneNumber + "," + contact.email);
                 writer.newLine();
             }
@@ -164,7 +164,7 @@ public class ContactListApp {
 
             boolean contactDeleted = false;
 
-            Iterator < Contact > iterator = contacts.iterator();
+            Iterator<Contact> iterator = contacts.iterator();
             while (iterator.hasNext()) {
                 Contact contact = iterator.next();
                 if (contact.name.equalsIgnoreCase(nameToDelete)) {
@@ -202,8 +202,7 @@ public class ContactListApp {
             String nameToEdit = scanner.nextLine();
 
 
-
-            for (Contact contact: contacts) {
+            for (Contact contact : contacts) {
                 if (contact.name.equalsIgnoreCase(nameToEdit)) {
                     System.out.printf("Editing Contact :%s \n", nameToEdit);
 
@@ -235,26 +234,28 @@ public class ContactListApp {
     }
 
     private static void searchContacts() {
-        if(!contacts.isEmpty()){
+        if (!contacts.isEmpty()) {
 
-        Scanner scanner = new Scanner(System.in);
+            Scanner scanner = new Scanner(System.in);
 
-        System.out.print("Enter search query: ");
-        String query = scanner.nextLine();
+            System.out.print("Enter search query: ");
+            String query = scanner.nextLine();
 
-        boolean isFound = false;
+            boolean isFound = false;
 
-        for(Contact contact : contacts)
-            if (contact.name.toLowerCase().contains(query) || contact.phoneNumber.toLowerCase().contains(query) || contact.email.toLowerCase().contains(query)) {
-                System.out.printf("Results for: [%s]\n", query);
-                System.out.printf("----Name: %s\n", contact.name);
-                System.out.printf("----Phone Number: %s\n", contact.phoneNumber);
-                System.out.printf("----Email: %s\n", contact.email);
-                System.out.println("--------------------------");
-                isFound = true;
-            }
+            for (Contact contact : contacts)
+                if (contact.name.toLowerCase().contains(query)
+                        || contact.phoneNumber.toLowerCase().contains(query)
+                        || contact.email.toLowerCase().contains(query)) {
+                    System.out.printf("Results for: [%s]\n", query);
+                    System.out.printf("----Name: %s\n", contact.name);
+                    System.out.printf("----Phone Number: %s\n", contact.phoneNumber);
+                    System.out.printf("----Email: %s\n", contact.email);
+                    System.out.println("--------------------------");
+                    isFound = true;
+                }
 
-        if(!isFound) System.out.println("No matching contacts found.");
+            if (!isFound) System.out.println("No matching contacts found.");
 
         } else {
             System.out.println("--You don't have any contacts---");

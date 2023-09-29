@@ -1,72 +1,170 @@
 package Projects;
 
+import java.io.*;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Scanner;
 
+class Todo {
+    String content;
+    String isCompleted;
+
+    String title;
+
+    public Todo(String content, String isCompleted, String title) {
+        this.content = content;
+        this.isCompleted = isCompleted;
+        this.title = title;
+    }
+
+}
 
 public class Todoapp {
 
+    private static final String TODOS_FILE = "todos.txt";
+    private static final ArrayList<Todo> todos = new ArrayList<>();
+
     public static void main(String[] args) {
+        loadTodos();
+        runTodoApp();
+    }
+
+    private static void loadTodos() {
+        try (BufferedReader reader = new BufferedReader(new FileReader(TODOS_FILE))) {
+            String line;
+
+            while ((line = reader.readLine()) != null) {
+                // [clean up, false] -> parts[0] = content -> parts[1] = isCompleted;
+                String[] parts = line.split(",");
+                if (parts.length == 3) {
+                    String content = parts[2];
+                    String isCompleted = parts[1];
+                    String title = parts[0];
+                    Todo newTodo = new Todo(title, content, isCompleted);
+                    todos.add(newTodo);
+                }
+            }
+
+        } catch (IOException e) {
+            System.out.println("Error loading todos !");
+        }
+    }
+
+    private static void addTodo() {
         Scanner scanner = new Scanner(System.in);
 
-        System.out.print("Welcome to the todo app. Please enter your name: ");
-        String username = scanner.nextLine();
+        System.out.print("Enter title content: ");
+        String title = scanner.nextLine();
 
-        List<TodoItem> todos = new ArrayList<>();
 
-        while (true) {
-            System.out.println("Options:");
-            System.out.println("1. Add a new todo");
-            System.out.println("2. View your todos");
-            System.out.println("3. Exit");
-            System.out.print("Enter your choice: ");
+        System.out.print("Enter todo content: ");
+        String content = scanner.nextLine();
 
-            int choice = scanner.nextInt();
-            scanner.nextLine(); // Consume the newline character
+        System.out.print("Enter todo isCompleted status [true / false]: ");
+        String isCompleted = scanner.nextLine();
+
+        Todo newTodo = new Todo(content, isCompleted, title);
+        todos.add(newTodo);
+
+        saveTodos();
+
+    }
+
+    private static void saveTodos() {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(TODOS_FILE))) {
+
+            for (Todo todo : todos) {
+                writer.write(todo.title + "," + todo.content + "," + todo.isCompleted);
+                writer.newLine();
+            }
+        } catch (IOException e) {
+            System.out.println("Error saving todos !");
+        }
+    }
+
+    private static void displayOptions() {
+        System.out.println("Todos List Menu:");
+        System.out.println("1. Add Todo");
+        System.out.println("2. View Todos");
+        System.out.println("3. Exit");
+        System.out.println("4. Edit todo");
+        System.out.print("Enter your choice: ");
+    }
+
+    private static void runTodoApp() {
+        Scanner scanner = new Scanner(System.in);
+
+        int choice;
+
+        do {
+            displayOptions();
+            choice = scanner.nextInt();
 
             switch (choice) {
                 case 1:
-                    System.out.print("Enter the title of the todo: ");
-                    String todoTitle = scanner.nextLine();
-                    System.out.print("Is the todo done (true or false): ");
-                    boolean todoStatus = scanner.nextBoolean();
-                    TodoItem todoItem = new TodoItem(todoTitle, todoStatus);
-                    todos.add(todoItem);
-                    System.out.printf("Successfully added %s to the todos list\n", todoItem.getTitle());
+                    addTodo();
                     break;
                 case 2:
-                    System.out.println("Your todos:");
-                    for (int i = 0; i < todos.size(); i++) {
-                        TodoItem item = todos.get(i);
-                        System.out.printf("%d. %s (Status: %s)%n", i + 1, item.getTitle(), item.isDone() ? "Done" : "Not Done");
-                    }
+                    viewTodos();
                     break;
                 case 3:
-                    System.out.println("Goodbye!");
-                    scanner.close();
-                    System.exit(0);
+                    System.out.println("Exiting...");
+                    break;
+                case 4:
+                    editTodo();
+                    break;
                 default:
-                    System.out.println("Invalid choice. Please choose again.");
+                    System.out.println("Executing defaults.... You entered a non-existing command");
+
             }
+
+        } while (choice != 3);
+    }
+
+    private static void viewTodos() {
+        System.out.println("Todos List: ");
+
+        if (!todos.isEmpty()) {
+            for (Todo todo : todos) {
+                System.out.printf("----Title: %s\n", todo.title);
+                System.out.printf("----Content: %s\n", todo.content);
+                System.out.printf("----isComplete: %s\n", todo.isCompleted);
+                System.out.println("--------------------------");
+            }
+        } else {
+            System.out.println("An error occurred while processing the todos.");
+
         }
     }
 
-    static class TodoItem {
-        private String title;
-        private boolean done;
+    private static void editTodo() {
 
-        public TodoItem(String title, boolean done) {
-            this.title = title;
-            this.done = done;
+        if (!todos.isEmpty()) {
+
+            viewTodos();
+
+            Scanner scanner = new Scanner(System.in);
+
+            System.out.print("Enter the title of the todo to edit: ");
+            String statusToEdit = scanner.nextLine();
+
+            for (Todo todo : todos) {
+                if (todo.title.equalsIgnoreCase(statusToEdit)) {
+                    System.out.printf("The status for the todo [%s] is %s\n Enter the new status ?", todo.title, todo.isCompleted);
+
+                    todo.isCompleted = scanner.nextLine();
+
+                    saveTodos();
+
+                    System.out.println("Todo updated successfully.");
+
+                    break;
+                }
+            }
+        } else {
+            System.out.println("You must have at least one todo to access this option.");
+
         }
 
-        public String getTitle() {
-            return title;
-        }
-
-        public boolean isDone() {
-            return done;
-        }
     }
 }
+
