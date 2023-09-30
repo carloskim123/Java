@@ -1,1 +1,10 @@
-benze,A new inventory inside the inventory store,4522
+Toaster Oven,a basic toaster with rather basic operations,150000
+Robot Vacuum, A smart robot vacuum cleaner with mapping technology and app control,2345
+French Door Refrigerator, A spacious French door refrigerator with ice and water dispenser,3000
+Espresso Machine, A premium espresso machine with a milk brother for cafe-quality coffee,2556
+Washer and Dryer Set, A high-capacity washer and dryer set with multiple wash cycles,15002
+Induction Cooktop, A sleek induction cooktop with precise temperature control,34560
+Smart TV, A 4K Ultra HD smart TV with voice control and streaming apps,18000
+Dishwasher, An energy-efficient dishwasher with adjustable racks and quiet operation,19000
+Chest Freezer, A spacious chest freezer for long-term food storage,40000
+walterphones,A new inventory inside the inventory store,899

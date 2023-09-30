@@ -1,4 +1,4 @@
-package Projects;
+package Projects.CrudApps;
 
 import java.io.*;
 import java.util.ArrayList;
@@ -243,7 +243,7 @@ public class ContactListApp {
 
             boolean isFound = false;
 
-            for (Contact contact : contacts)
+            for (Contact contact : contacts) {
                 if (contact.name.toLowerCase().contains(query)
                         || contact.phoneNumber.toLowerCase().contains(query)
                         || contact.email.toLowerCase().contains(query)) {
@@ -254,6 +254,7 @@ public class ContactListApp {
                     System.out.println("--------------------------");
                     isFound = true;
                 }
+            }
 
             if (!isFound) System.out.println("No matching contacts found.");
 
