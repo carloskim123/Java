@@ -7,4 +7,3 @@ Induction Cooktop, A sleek induction cooktop with precise temperature control,34
 Smart TV, A 4K Ultra HD smart TV with voice control and streaming apps,18000
 Dishwasher, An energy-efficient dishwasher with adjustable racks and quiet operation,19000
 Chest Freezer, A spacious chest freezer for long-term food storage,40000
-walterphones,A new inventory inside the inventory store,899

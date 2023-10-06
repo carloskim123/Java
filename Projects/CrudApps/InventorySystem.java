@@ -35,7 +35,7 @@ public class InventorySystem {
     }
 
     private static void displayOptions() {
-
+        pushAndFetch();
         System.out.println("InventoryStore Options:");
         System.out.println("1. Add Inventory");
         System.out.println("2. Edit Inventory");
@@ -96,16 +96,15 @@ public class InventorySystem {
             String titleToEdit = editorAi.nextLine();
             boolean found = false;  // Add a flag to track if the item was found
 
-            for (InventoryStore inventory : inventoryStore) {
+            System.out.println("Checking disk for modifications...");
+            System.out.println("Searching for " + titleToEdit + "...");
+            System.out.println("Inventory Found ✅");
 
-                System.out.println("Checking disk for modifications...");
-                System.out.println("Searching for " + titleToEdit + "...");
-                System.out.println("Inventory Found ✅");
+            for (InventoryStore inventory : inventoryStore) {
 
                 if (inventory.title.toLowerCase().contains(titleToEdit)) {
 
-
-                    System.out.printf("Inventory item details: \nTitle: %s\nDescription: %s\nQuantity: %d\n",
+                    System.out.printf("Inventory item details: \n  Title: %s\n  Description: %s\n  Quantity: %d\n",
                             inventory.title, inventory.description, inventory.quantity);
 
                     System.out.println("What do you want to modify? [title - t, desc - d, quantity - q]");
@@ -285,13 +284,15 @@ public class InventorySystem {
 
             boolean isFound = false;
 
+            System.out.printf("Results for: [%s]\n", query);
+
             for (InventoryStore inventory : inventoryStore) {
                 String title = inventory.title.toLowerCase();
+
 
                 if (inventory.title.contains(query)) {
                     String underlinedTitle = underlineAllOccurrences(title, query);
 
-                    System.out.printf("Results for: [%s]\n", query);
                     System.out.printf("----Title: %s\n", underlinedTitle);
                     System.out.printf("----Description: %s\n", inventory.description);
                     System.out.printf("----Quantity: %d\n", inventory.quantity);
@@ -309,6 +310,11 @@ public class InventorySystem {
             System.out.println("Inventory Store is empty");
         }
 
+    }
+
+    private static void pushAndFetch() {
+        saveInventory();
+        loadInventoryStore();
     }
 
     // Function to underline all occurrences of the query in a string
